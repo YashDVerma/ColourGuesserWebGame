@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            
+        }
+        .wordbox{
+            text-align: center;
+            transform: translateY(400px) ;
+        }
+        #word{
+            font-size: 60px;
+            font-weight: 600;
+            color: brown;
+        }
+        #button1 {
+            background-color: blue;
+            border-radius: 5px;
+            padding-right: 50px;
+            padding-left: 50px;
+            padding-top:15px;
+            padding-bottom: 15px;
+            
+        }
+        #button2 {
+            background-color: red;
+            border-radius: 5px;
+            padding-right: 50px;
+            padding-left: 50px;
+            padding-top:15px;
+            padding-bottom: 15px;
+            
+        }
+        #button3 {
+            background-color: green;
+            border-radius: 5px;
+            padding-right: 50px;
+            padding-left: 50px;
+            padding-top:15px;
+            padding-bottom: 15px;
+            
+        }
+    </style>
+
+
+</head>
+<body style="background-color: blanchedalmond;">
+
+<div class="wordbox">
+    <span id="word">Green</span>
+</div>    
+<div style="text-align: center; transform:translateY(450px)">
+<button id="button1" class="button" onclick="CheckColor(1)"></button>
+<button id="button2" class="button" onclick="CheckColor(2)"></button>
+<button id="button3" class="button" onclick="CheckColor(3)"></button>
+
+</div>
+
+<script>
+    var colors=["blue","green","red","yellow","black","purple","pink","orange","white","brown"];
+    var buttons =document.getElementsByClassName("button");
+    var resetTime=0;
+    function CheckColor(x){
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       /* if(x==1){
+            if(document.getElementById("word").style.color == document.getElementById("button1").style.backgroundColor)
+                alert("CORRECT!");
+            else
+                alert("No");
+        }
+        else if(x==2){
+            if(document.getElementById("word").style.color == document.getElementById("button2").style.backgroundColor)
+                alert("CORRECT!");
+            else
+                alert("No");
+        }
+        else{
+            if(document.getElementById("word").style.color == document.getElementById("button3").style.backgroundColor)
+                alert("CORRECT!");
+            else
+                alert("No");
+        }*/
+        Randomizer();
+        
+       
+        
+        
+    }
+    function Randomizer(){
+        var buttons =document.getElementsByClassName("button");
+        let textColorIndex=Math.floor(Math.random()*10);
+        document.getElementById("word").style.color= colors[textColorIndex];
+         
+        let colorWordIndex=Math.floor(Math.random()*10)
+        document.getElementById("word").innerHTML = colors[colorWordIndex];
+
+        let rArr=randArray();
+        //in case if the word and the font color is not same
+        if(document.getElementById("word").style.color.toString()!=document.getElementById("word").innerHTML){
+            buttons[rArr[0]].style.backgroundColor=colors[textColorIndex];
+            buttons[rArr[1]].style.backgroundColor=colors[colorWordIndex];
+            
+            let randColor=Math.floor(Math.random()*10);
+            while(randColor==textColorIndex || randColor==colorWordIndex){
+                randColor=Math.floor(Math.random()*10);
+            }
+            buttons[rArr[2]].style.backgroundColor=colors[randColor];}
+        else{
+            //in case if the word and font color is same
+            let randColor1=Math.floor(Math.random()*10);
+            while(randColor1==textColorIndex){
+                randColor=Math.floor(Math.random()*10);
+            }
+            let randColor2=Math.floor(Math.random()*10);
+            while(randColor2==textColorIndex && randColor2== randColor1){
+                randColor2=Math.floor(Math.random()*10);
+            }
+        
+            buttons[rArr[0]].style.backgroundColor=colors[textColorIndex];
+            buttons[rArr[1]].style.backgroundColor=colors[randColor1];
+            buttons[rArr[2]].style.backgroundColor=colors[randColor2];
+        }
+        
+
+       
+        
+    }
+
+    function randArray(){
+        let i=[0,1,2];
+        for(j=0;j<8;j++){
+            let x=Math.floor((Math.random()*10)%3);
+            let y=Math.floor((Math.random()*10)%3);
+            while(x==y){
+                y=Math.floor((Math.random()*10)%3);
+            }
+           
+           temp=i[x];
+           i[x]=i[y];
+           i[y]=temp;
+    
+        }
+        return i;
+    }
+
+   
+
+    
+        
+    
+
+</script>
+</body>
+</html>
